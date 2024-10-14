@@ -9,12 +9,13 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 45),
+      padding:
+          EdgeInsets.only(left: 24.w, right: 24.h, top: 40.h, bottom: 20.h),
       child: Row(
         children: [
           Image.asset(
             AssetsData.kLogo,
-            height: 18,
+            height: 18.h,
           ),
           const Spacer(),
           IconButton(
