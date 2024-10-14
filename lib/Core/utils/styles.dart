@@ -3,5 +3,5 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class Styles {
   static final titleMedium =
-      TextStyle(fontSize: 20.0.sp, fontWeight: FontWeight.w600);
+      TextStyle(fontSize: 18.0.sp, fontWeight: FontWeight.w600);
 }
