@@ -1,6 +1,6 @@
-import 'package:booklyapp/Core/utils/assets.dart';
+import 'package:booklyapp/Core/utils/styles.dart';
 import 'package:booklyapp/Features/home/presentation/views/widgets/app_bar_widget.dart';
-import 'package:booklyapp/Features/home/presentation/views/widgets/custom_listview-item.dart';
+import 'package:booklyapp/Features/home/presentation/views/widgets/feature_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,30 +9,20 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppBarWidget(),
-        FeatureListView(),
+        const AppBarWidget(),
+        const FeatureListView(),
+        SizedBox(height: 50.h),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Text(
+            'Best Seller',
+            style: Styles.titleMedium,
+          ),
+        ),
       ],
-    );
-  }
-}
-
-class FeatureListView extends StatelessWidget {
-  const FeatureListView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * .3,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-              child: const CustomListViewItem(),
-            );
-          }),
     );
   }
 }
