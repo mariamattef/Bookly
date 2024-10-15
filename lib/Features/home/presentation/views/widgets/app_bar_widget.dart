@@ -8,25 +8,22 @@ class AppBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:
-          EdgeInsets.only(left: 24.w, right: 24.h, top: 40.h, bottom: 20.h),
-      child: Row(
-        children: [
-          Image.asset(
-            AssetsData.kLogo,
-            height: 18.h,
+    return Row(
+      // left: 24.w, right: 24.h, top: 40.h, bottom: 20.
+      children: [
+        Image.asset(
+          AssetsData.kLogo,
+          height: 18.h,
+        ),
+        const Spacer(),
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            FontAwesomeIcons.magnifyingGlass,
+            size: 24,
           ),
-          const Spacer(),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              FontAwesomeIcons.magnifyingGlass,
-              size: 24,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
