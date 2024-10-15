@@ -8,9 +8,9 @@ abstract class Styles {
       fontWeight: FontWeight.normal,
       fontFamily: kGTSectraFine);
   static final textStyle20 = TextStyle(
-      fontSize: 20.0.sp,
-      fontWeight: FontWeight.normal,
-      fontFamily: kGTSectraFine);
+    fontSize: 20.0.sp,
+    fontWeight: FontWeight.normal,
+  );
   static final textStyle18 =
       TextStyle(fontSize: 18.0.sp, fontWeight: FontWeight.w600);
   static final textStyle16 =
