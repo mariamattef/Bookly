@@ -7,16 +7,19 @@ class FeatureListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * .3,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-              child: const CustomListViewItem(),
-            );
-          }),
+    return Padding(
+      padding: EdgeInsets.only(left: 15.w),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * .3,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                child: const CustomListViewItem(),
+              );
+            }),
+      ),
     );
   }
 }
