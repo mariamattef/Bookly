@@ -18,7 +18,7 @@ class HomeViewBody extends StatelessWidget {
         const FeatureListView(),
         SizedBox(height: 50.h),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: 30.w),
           child: Text(
             'Best Seller',
             style: Styles.textStyle18,
@@ -38,7 +38,7 @@ class BestSellerListView extends StatelessWidget {
     return SizedBox(
       height: 130.h,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
+        padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
         child: Row(
           children: [
             AspectRatio(
@@ -52,7 +52,20 @@ class BestSellerListView extends StatelessWidget {
                         image: AssetImage(AssetsData.testImage1))),
               ),
             ),
-            Text(''),
+            const SizedBox(width: 30),
+            Column(
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * .5,
+                  child: Text(
+                    'Herry Potter and the Goblet of Fire',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: Styles.textStyle20,
+                  ),
+                )
+              ],
+            ),
           ],
         ),
       ),
