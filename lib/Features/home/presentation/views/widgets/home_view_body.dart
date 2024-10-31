@@ -17,7 +17,7 @@ class HomeViewBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: kMainPading.copyWith(top: 40, bottom: 20),
+              padding: kMainPading.copyWith(top: 53, bottom: 20),
               child: const AppBarWidget(),
             ),
             const FeatureListView(),
