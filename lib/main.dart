@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() async {
   await ScreenUtil.ensureScreenSize();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Color(0xff100B20), // لون الـ StatusBar
+    statusBarColor: Color(0xff100B20),
   ));
   runApp(const Boookly());
 }
