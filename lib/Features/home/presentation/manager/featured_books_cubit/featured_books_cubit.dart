@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:booklyapp/Features/home/data/models/boook_model/boook.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../../data/repos/home_repo.dart';
 import '../../../domain/repostries/home_repo.dart';
 
 part 'featured_books_state.dart';
