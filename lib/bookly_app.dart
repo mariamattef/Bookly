@@ -23,7 +23,7 @@ class Boookly extends StatelessWidget {
             providers: [
               BlocProvider(
                   create: (context) =>
-                      FeaturedBooksCubit(getIt.get<HomeRepoImpl>())),
+                      FeaturedBooksCubit(getIt.get<HomeRepoImpl>())..fetchFeaturedBiooks()),
               BlocProvider(
                   create: (context) =>
                       NewestbooksCubit(getIt.get<HomeRepoImpl>()))
