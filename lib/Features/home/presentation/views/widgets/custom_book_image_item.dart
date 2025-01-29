@@ -29,6 +29,27 @@ class _CustomBookImageItemState extends State<CustomBookImageItem>  with SingleT
       size: 50.0,
       controller: _controller,
     );
+    return custombookImage(widget: widget, spinkit: spinkit);
+  }
+    @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}
+
+class custombookImage extends StatelessWidget {
+  const custombookImage({
+    super.key,
+    required this.widget,
+    required this.spinkit,
+  });
+
+  final CustomBookImageItem widget;
+  final SpinKitSquareCircle spinkit;
+
+  @override
+  Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: AspectRatio(
@@ -43,11 +64,6 @@ class _CustomBookImageItemState extends State<CustomBookImageItem>  with SingleT
             },
           )),
     );
-  }
-    @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }
 

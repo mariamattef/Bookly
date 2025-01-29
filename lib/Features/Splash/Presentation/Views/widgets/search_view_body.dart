@@ -38,7 +38,8 @@ class SearchResultListView extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 35.h),
       itemCount: 5,
       itemBuilder: (context, index) {
-        return const BookListViewItem();
+        // return const BookListViewItem(books: '://lhttpsetsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg',);
+        return const Text('data');
       },
     );
   }

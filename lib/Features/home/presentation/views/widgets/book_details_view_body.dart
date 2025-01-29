@@ -1,6 +1,5 @@
 import 'package:booklyapp/Core/utils/styles.dart';
 import 'package:booklyapp/Features/home/presentation/views/widgets/book_actions.dart';
-import 'package:booklyapp/Features/home/presentation/views/widgets/book_rating.dart';
 import 'package:booklyapp/Features/home/presentation/views/widgets/custom_book_details_appbar_view.dart';
 import 'package:booklyapp/Features/home/presentation/views/widgets/custom_book_image_item.dart';
 import 'package:booklyapp/Features/home/presentation/views/widgets/similar_books_listview.dart';
@@ -21,7 +20,9 @@ class BookDetailsViewBody extends StatelessWidget {
             const CustomBookDetailsAppBar(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.16),
-              child:  CustomBookImageItem(imgUrl: 'https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg'),
+              child: const CustomBookImageItem(
+                  imgUrl:
+                      'https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg'),
             ),
             SizedBox(
               height: 43.h,
@@ -41,9 +42,9 @@ class BookDetailsViewBody extends StatelessWidget {
             SizedBox(
               height: 16.h,
             ),
-            const BookRating(
-              mainAxisAlignment: MainAxisAlignment.center,
-            ),
+            // const BookRating(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            // ),
             SizedBox(
               height: 37.h,
             ),
