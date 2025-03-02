@@ -1,9 +1,9 @@
+import 'package:booklyapp/Features/home/domain/entities/book_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:booklyapp/Features/home/data/models/boook_model/boook.dart';
-import 'package:booklyapp/Features/home/domain/repostries/home_repo.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../data/repos/home_repo.dart';
+import '../../../domain/repostries/home_repo.dart';
+
 
 part 'newestbooks_state.dart';
 
@@ -19,4 +19,7 @@ class NewestbooksCubit extends Cubit<NewestbooksState> {
       emit(NewestbooksSuccess(books));
     });
   }
+
+
+
 }

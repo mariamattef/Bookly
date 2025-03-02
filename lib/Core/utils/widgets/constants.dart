@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const kPrimaryColor = Color(0xff100B20);
 const kTransitionDuration = Duration(milliseconds: 300);
 const kGTSectraFine = 'GT Sectra Fine';
-const kMainPading = EdgeInsets.symmetric(horizontal: 30.0);
+final kMainPading = EdgeInsets.symmetric( horizontal:  30.w );
+const kFeaturedBox = 'featured_box';
+const kNewestBox = 'newest_box';
+
+
+
+
+
+
+

@@ -29,7 +29,7 @@ class _CustomBookImageItemState extends State<CustomBookImageItem>  with SingleT
       size: 50.0,
       controller: _controller,
     );
-    return custombookImage(widget: widget, spinkit: spinkit);
+    return CustomBookImage(widget: widget, spinkit: spinkit);
   }
     @override
   void dispose() {
@@ -38,8 +38,8 @@ class _CustomBookImageItemState extends State<CustomBookImageItem>  with SingleT
   }
 }
 
-class custombookImage extends StatelessWidget {
-  const custombookImage({
+class CustomBookImage extends StatelessWidget {
+  const CustomBookImage({
     super.key,
     required this.widget,
     required this.spinkit,

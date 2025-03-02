@@ -1,38 +1,18 @@
-import 'dart:convert';
+class IndustryIdentifier {
+  String? type;
+  String? identifier;
 
-import 'package:equatable/equatable.dart';
+  IndustryIdentifier({this.type, this.identifier});
 
-class IndustryIdentifier extends Equatable {
-  final String? type;
-  final String? identifier;
-
-  const IndustryIdentifier({this.type, this.identifier});
-
-  factory IndustryIdentifier.fromMap(Map<String, dynamic> data) {
+  factory IndustryIdentifier.fromJson(Map<String, dynamic> json) {
     return IndustryIdentifier(
-      type: data['type'] as String?,
-      identifier: data['identifier'] as String?,
+      type: json['type'] as String?,
+      identifier: json['identifier'] as String?,
     );
   }
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
         'type': type,
         'identifier': identifier,
       };
-
-  /// `dart:convert`
-  ///
-  /// Parses the string and returns the resulting Json object as [IndustryIdentifier].
-  factory IndustryIdentifier.fromJson(String data) {
-    return IndustryIdentifier.fromMap(
-        json.decode(data) as Map<String, dynamic>);
-  }
-
-  /// `dart:convert`
-  ///
-  /// Converts [IndustryIdentifier] to a JSON string.
-  String toJson() => json.encode(toMap());
-
-  @override
-  List<Object?> get props => [type, identifier];
 }

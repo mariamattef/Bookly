@@ -1,6 +1,5 @@
 import 'package:booklyapp/Core/utils/styles.dart';
 import 'package:booklyapp/Features/Search/presentation/widgets/custom_search_text_field.dart';
-import 'package:booklyapp/Features/home/presentation/views/widgets/book_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

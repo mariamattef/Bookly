@@ -1,5 +1,5 @@
 import 'package:booklyapp/Core/utils/app_router.dart';
-import 'package:booklyapp/Core/utils/service_locator.dart';
+import 'package:booklyapp/Core/utils/functions/setup_service_locator.dart';
 import 'package:booklyapp/Features/home/data/repos/home_repo_impl.dart';
 import 'package:booklyapp/Features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
 import 'package:booklyapp/Features/home/presentation/manager/newest_books_cubit/newestbooks_cubit.dart';
@@ -11,7 +11,6 @@ import 'package:google_fonts/google_fonts.dart';
 class Boookly extends StatelessWidget {
   const Boookly({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -23,10 +22,12 @@ class Boookly extends StatelessWidget {
             providers: [
               BlocProvider(
                   create: (context) =>
-                      FeaturedBooksCubit(getIt.get<HomeRepoImpl>())..fetchFeaturedBiooks()),
+                      FeaturedBooksCubit(getIt<HomeRepoImpl>())
+                        ..fetchFeaturedBooks()),
               BlocProvider(
                   create: (context) =>
-                      NewestbooksCubit(getIt.get<HomeRepoImpl>())..fetchNewestBooks()),
+                      NewestbooksCubit(getIt.get<HomeRepoImpl>())
+                        ..fetchNewestBooks()),
             ],
             child: MaterialApp.router(
               routerConfig: AppRouter.router,
