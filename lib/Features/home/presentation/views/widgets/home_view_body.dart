@@ -24,6 +24,9 @@ class HomeViewBody extends StatelessWidget {
               ),
               SizedBox(height: 10.h),
               const FeaturedListViewBlocBuilder(),
+              SizedBox(
+                height: 10.h,
+              ),
               Padding(
                 padding: kMainPading,
                 child: Text(

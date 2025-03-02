@@ -51,12 +51,14 @@ class BookDetailsViewBody extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             BookRating(
+              // ToDo: Category and pageCount are not coming from the API ,coming Null
               mainAxisAlignment: MainAxisAlignment.center,
-              category: book.category ?? 'No Category',
-              countPage: book.pageCount.toString()??'' ,
+              rating: book.rating?.toInt() ?? 0,
+              countPage: book.pageCount?.toString() ?? 'No',
             ),
             SizedBox(height: 37.h),
             BooksAction(
+              // ToDo: pdfUrl is not coming from the API ,coming Null
               pdfUrl: book.pdfUrl ?? '',
             ),
             SizedBox(height: 40.h),

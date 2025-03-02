@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BookRating extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
-  final String category;
+  final int rating;
   final String countPage;
   const BookRating(
       {this.mainAxisAlignment = MainAxisAlignment.start,
       super.key,
-      required this.category,
+      required this.rating,
       required this.countPage});
 
   @override
@@ -20,7 +20,7 @@ class BookRating extends StatelessWidget {
        
         SizedBox(width: 6.3.w),
         Text(
-          category,
+          rating.toString(),
           style: Styles.textStyle16,
         ),
         SizedBox(width: 5.w),
@@ -33,5 +33,6 @@ class BookRating extends StatelessWidget {
         ),
       ],
     );
+  
   }
 }

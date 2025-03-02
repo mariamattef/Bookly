@@ -13,6 +13,7 @@ class BookListViewItem extends StatelessWidget {
   final BookEntity books;
   @override
   Widget build(BuildContext context) {
+    print(books.rating);
     return GestureDetector(
       onTap: () {
         GoRouter.of(context).push(AppRouter.kBookDetailsView, extra: books);
@@ -68,10 +69,11 @@ class BookListViewItem extends StatelessWidget {
                       Text('Free',
                           style: Styles.textStyle18
                               .copyWith(fontWeight: FontWeight.bold)),
-                      // Spacer(),
+                    
                       BookRating(
-                        category: books.rating?.toString() ?? '',
-                        countPage: books.pageCount.toString()??'',
+                        // ToDo: Category and pageCount are not coming from the API ,coming Null
+                        rating: books.rating?.toInt()?? 0,
+                        countPage: books.pageCount?.toString()??'No Page',
                       ),
                     ],
                   )
