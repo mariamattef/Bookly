@@ -14,6 +14,8 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       body: CustomMaterialIndicator(
         onRefresh: () async {
+          // ToDo : fetchFeaturedBooks Not refresh
+          
           await context.read<FeaturedBooksCubit>().fetchFeaturedBooks();
           await context.read<NewestbooksCubit>().fetchNewestBooks();
         },   
