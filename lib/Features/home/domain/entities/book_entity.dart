@@ -21,6 +21,10 @@ class BookEntity {
   final int? pageCount;
   @HiveField(8)
   final String? pdfUrl;
+   @HiveField(9)
+  final String? country;
+     @HiveField(10)
+  final String? description;
 
   BookEntity({
     required this.image,
@@ -32,5 +36,7 @@ class BookEntity {
     required this.category,
     required this.pageCount,
     required this.pdfUrl,
+    required this.country,
+    required this.description,
   });
 }

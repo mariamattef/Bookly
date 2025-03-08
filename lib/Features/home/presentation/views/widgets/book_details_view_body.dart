@@ -1,7 +1,7 @@
 import 'package:booklyapp/Core/utils/styles.dart';
 import 'package:booklyapp/Features/home/domain/entities/book_entity.dart';
 import 'package:booklyapp/Features/home/presentation/views/widgets/book_actions.dart';
-import 'package:booklyapp/Features/home/presentation/views/widgets/book_rating.dart';
+import 'package:booklyapp/Features/home/presentation/views/widgets/book_count_page.dart';
 import 'package:booklyapp/Features/home/presentation/views/widgets/custom_book_details_appbar_view.dart';
 import 'package:booklyapp/Features/home/presentation/views/widgets/custom_book_image_item.dart';
 import 'package:booklyapp/Features/home/presentation/views/widgets/similar_books_listview.dart';
@@ -18,48 +18,54 @@ class BookDetailsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<NewestbooksCubit>().fetchNewestBooks();
-    print('pageCount ${book.pageCount}');
-    print('category ${book.category}');
-    print('pdfUrl ${book.pdfUrl}');
     var width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30.0.w),
+        padding: EdgeInsets.symmetric(horizontal: 10.0.w),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const CustomBookDetailsAppBar(),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.16),
-              child: CustomBookImageItem(
-                  imgUrl: book.image ??
-                      'https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg'),
-            ),
-            SizedBox(
-              height: 43.h,
-            ),
-            Text(
-              textAlign: TextAlign.center,
-              book.title,
-              style: Styles.textStyle30.copyWith(),
-            ),
-            SizedBox(height: 6.h),
-            Text(
-              textAlign: TextAlign.center,
-              book.authorName ?? 'Unknown Author',
-              style: Styles.textStyle18.copyWith(
-                  fontStyle: FontStyle.italic, fontWeight: FontWeight.w500),
-            ),
-            SizedBox(height: 16.h),
-            BookRating(
-              // ToDo: Category and pageCount are not coming from the API ,coming Null
-              mainAxisAlignment: MainAxisAlignment.center,
-              rating: book.rating?.toInt() ?? 0,
-              countPage: book.pageCount?.toString() ?? 'No',
-            ),
-            SizedBox(height: 37.h),
-            BooksAction(
-              // ToDo: pdfUrl is not coming from the API ,coming Null
-              pdfUrl: book.pdfUrl ?? '',
+              padding: EdgeInsets.symmetric(horizontal: 30.0.w),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.16),
+                    child: CustomBookImageItem(
+                        imgUrl: book.image ??
+                            'https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg'),
+                  ),
+                  SizedBox(
+                    height: 43.h,
+                  ),
+                  Text(
+                    textAlign: TextAlign.center,
+                    book.title,
+                    style: Styles.textStyle30.copyWith(),
+                  ),
+                  SizedBox(height: 6.h),
+                  Text(
+                    maxLines: 3,
+                    textAlign: TextAlign.center,
+                    book.description ?? 'No Description',
+                    style: Styles.textStyle18.copyWith(
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(height: 16.h),
+                  BookCountPage(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    countPage: book.pageCount?.toString() ?? 'No',
+                  ),
+                  SizedBox(height: 37.h),
+                  BooksAction(
+                    tite: book.title,
+                    bookUrl: book.pdfUrl ?? '',
+                    
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 40.h),
             Align(

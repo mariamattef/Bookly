@@ -8,39 +8,46 @@ abstract class Failure {
 
 class ServerFailure extends Failure {
   ServerFailure(super.errorMessage);
+
   factory ServerFailure.fromDioException(DioException dioException) {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
-        return ServerFailure('connection timeout with apiService');
+        return ServerFailure('Connection timeout with API service');
       case DioExceptionType.sendTimeout:
-        return ServerFailure('send timeout with apiService');
+        return ServerFailure('Send timeout with API service');
       case DioExceptionType.receiveTimeout:
-        return ServerFailure('receive timeout with apiService');
+        return ServerFailure('Receive timeout with API service');
       case DioExceptionType.badCertificate:
-        return ServerFailure('Bad request with apiService');
+        return ServerFailure('Bad request with API service');
       case DioExceptionType.badResponse:
         return ServerFailure.fromResponse(
-            dioException.response!.statusCode, dioException.response!.data);
+          dioException.response?.statusCode ?? 500,
+          dioException.response?.data ?? {},
+        );
       case DioExceptionType.cancel:
-        return ServerFailure('Cancel Request with apiService');
+        return ServerFailure('Request to API was cancelled');
       case DioExceptionType.connectionError:
         return ServerFailure('No Internet connection');
       case DioExceptionType.unknown:
-        if (dioException.message!.contains('SocketException')) {
+        if (dioException.message?.contains('SocketException') == true) {
           return ServerFailure('No Internet connection');
         }
-        return ServerFailure('UnExpected Error with apiService,,Try again');
+        return ServerFailure(
+            'Unexpected error with API service, please try again');
     }
   }
-  factory ServerFailure.fromResponse(dynamic response, int statusCode) {
+
+  factory ServerFailure.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(response['error']['message']);
+      return ServerFailure(
+          response?['error']?['message'] ?? 'Authentication error');
     } else if (statusCode == 404) {
-      return ServerFailure('your equest Not Found  Please try later');
+      return ServerFailure(
+          'Your request was not found. Please try again later');
     } else if (statusCode == 500) {
       return ServerFailure('Internal Server Error. Please try again later');
     } else {
-      return ServerFailure('Opps There was an error, please try again later');
+      return ServerFailure('Oops! There was an error, please try again later');
     }
   }
 }

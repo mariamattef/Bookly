@@ -1,70 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomBookImageItem extends StatefulWidget {
- const  CustomBookImageItem({super.key, required this.imgUrl});
+class CustomBookImageItem extends StatelessWidget {
   final String imgUrl;
-
-  @override
-  State<CustomBookImageItem> createState() => _CustomBookImageItemState();
-}
-
-class _CustomBookImageItemState extends State<CustomBookImageItem>  with SingleTickerProviderStateMixin {
-     late AnimationController _controller;
-      @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1200),
-    );
-  }
+  const CustomBookImageItem({super.key, required this.imgUrl});
 
   @override
   Widget build(BuildContext context) {
-    
-  final spinkit =SpinKitSquareCircle(
-      color: Colors.white,
-      size: 50.0,
-      controller: _controller,
-    );
-    return CustomBookImage(widget: widget, spinkit: spinkit);
-  }
-    @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-}
-
-class CustomBookImage extends StatelessWidget {
-  const CustomBookImage({
-    super.key,
-    required this.widget,
-    required this.spinkit,
-  });
-
-  final CustomBookImageItem widget;
-  final SpinKitSquareCircle spinkit;
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
-      child: AspectRatio(
-          aspectRatio: 2.6 / 4,
+    return AspectRatio(
+      aspectRatio: 2.6 / 4,
+      child: SizedBox(
+        width: 120.w,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
           child: CachedNetworkImage(
+            imageUrl: imgUrl, 
             fit: BoxFit.fill,
-            imageUrl: widget.imgUrl,
-            placeholder: (context, url) =>
-                 spinkit,
-            errorWidget: (context, url, error) {
-              return const Icon(Icons.error_outline);
-            },
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
-
-

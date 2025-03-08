@@ -1,6 +1,7 @@
 import 'package:booklyapp/Features/home/domain/entities/book_entity.dart';
 import 'package:booklyapp/Features/home/presentation/manager/newest_books_cubit/newestbooks_cubit.dart';
 import 'package:booklyapp/Features/home/presentation/views/widgets/custom_book_image_item.dart';
+import 'package:booklyapp/Features/home/presentation/views/widgets/loading_indicator_similar_books_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,6 +29,7 @@ class _SimilarBookListViewState extends State<SimilarBookListView> {
           return SizedBox(
             height: MediaQuery.of(context).size.height * .15,
             child: ListView.builder(
+              padding: EdgeInsets.zero,
                 itemCount: state.books.length,
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -41,13 +43,13 @@ class _SimilarBookListViewState extends State<SimilarBookListView> {
                     ),
                   );
                 }),
-          );
+          );      
         } else if (state is NewestbooksFailure) {
           return Center(
             child: Text(state.error),
           );
         }
-        return const CircularProgressIndicator();
+        return const LoadingIndicatorSimilarBooksList();
       },
     );
   }

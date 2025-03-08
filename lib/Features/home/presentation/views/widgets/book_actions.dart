@@ -4,20 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-
 class BooksAction extends StatelessWidget {
-  final String pdfUrl;
-  const BooksAction({super.key, required this.pdfUrl});
-
-
-
+  final String bookUrl;
+  final String tite;
+  const BooksAction({super.key, required this.bookUrl, required this.tite});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 8.0.w),
+      padding: EdgeInsets.symmetric(horizontal: 8.0.w),
       child: Row(children: [
-         Expanded(
+        Expanded(
             child: CustomButton(
           backgroundColor: Colors.white,
           color: Colors.black,
@@ -25,7 +22,8 @@ class BooksAction extends StatelessWidget {
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(12.r),
             bottomLeft: Radius.circular(12.r),
-          ), onPressed: null,
+          ),
+          onPressed: null,
         )),
         Expanded(
             child: CustomButton(
@@ -33,24 +31,20 @@ class BooksAction extends StatelessWidget {
           color: Colors.white,
           text: 'Free Preview',
           fontSize: 16.sp,
-          borderRadius:  BorderRadius.only(
+          borderRadius: BorderRadius.only(
             topRight: Radius.circular(12.r),
             bottomRight: Radius.circular(12.r),
           ),
-          onPressed: 
-          () {
-                print("Button tapped! URL: $pdfUrl"); // Debugging
-
-              if (pdfUrl.isNotEmpty && Uri.tryParse(pdfUrl)?.isAbsolute == true) {
-                GoRouter.of(context).push(AppRouter.kBookView, extra: pdfUrl);
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    backgroundColor: Colors.red,
-                    content: Text("There is no preview available for this book"),
-                  ),
-                );
-              }
+          onPressed: () {
+            if (bookUrl.isNotEmpty) {
+              GoRouter.of(context).push(
+                AppRouter.kBookView,
+                extra: {'webUrl': bookUrl, 'title': tite},
+              );
+            } else {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(const SnackBar(content: Text("Invalid URL!")));
+            }
           },
         )),
       ]),

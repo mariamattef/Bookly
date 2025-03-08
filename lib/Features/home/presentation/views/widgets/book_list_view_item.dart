@@ -2,7 +2,7 @@ import 'package:booklyapp/Core/utils/app_router.dart';
 import 'package:booklyapp/Core/utils/widgets/constants.dart';
 import 'package:booklyapp/Core/utils/styles.dart';
 import 'package:booklyapp/Features/home/domain/entities/book_entity.dart';
-import 'package:booklyapp/Features/home/presentation/views/widgets/book_rating.dart';
+import 'package:booklyapp/Features/home/presentation/views/widgets/book_count_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,14 +11,15 @@ import 'package:go_router/go_router.dart';
 class BookListViewItem extends StatelessWidget {
   const BookListViewItem({super.key, required this.books});
   final BookEntity books;
+  
   @override
   Widget build(BuildContext context) {
-    print(books.rating);
     return GestureDetector(
       onTap: () {
         GoRouter.of(context).push(AppRouter.kBookDetailsView, extra: books);
       },
       child: Container(
+        margin: EdgeInsets.only(bottom: 15.h),
         padding: EdgeInsets.only(right: 10.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.r),
@@ -51,7 +52,7 @@ class BookListViewItem extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * .8,
                     child: Text(
                       books.title,
-                      maxLines: 2,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Styles.textStyle20
                           .copyWith(fontFamily: kGTSectraFine),
@@ -63,20 +64,14 @@ class BookListViewItem extends StatelessWidget {
                     books.authorName ?? '',
                     style: Styles.textStyle14,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Free',
-                          style: Styles.textStyle18
-                              .copyWith(fontWeight: FontWeight.bold)),
-                    
-                      BookRating(
-                        // ToDo: Category and pageCount are not coming from the API ,coming Null
-                        rating: books.rating?.toInt()?? 0,
-                        countPage: books.pageCount?.toString()??'No Page',
-                      ),
-                    ],
-                  )
+                  BookCountPage(
+                    countPage: books.pageCount?.toString() ?? 'No Page',
+                  ),
+                  Text(
+                      maxLines: 1,
+                      books.category ?? 'No Category',
+                      style: Styles.textStyle18
+                          .copyWith(fontWeight: FontWeight.bold)),
                 ],
               ),
             ),

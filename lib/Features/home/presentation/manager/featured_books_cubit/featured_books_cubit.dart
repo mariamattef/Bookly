@@ -1,23 +1,51 @@
 import 'package:booklyapp/Features/home/domain/entities/book_entity.dart';
-import 'package:booklyapp/Features/home/domain/repostries/home_repo.dart';
+import 'package:booklyapp/Features/home/domain/use_cases/fetch_featured_books_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
-
 part 'featured_books_state.dart';
 
 class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
-  FeaturedBooksCubit(this.homeRepo) : super(FeaturedBooksInitial());
-  final HomeRepo homeRepo;
-  Future<void> fetchFeaturedBooks({int pageNumber = 0}) async {
-    emit(FeaturedBooksLoading());
-    var featuredBooks =
-        await homeRepo.fetchFeaturedBooks(pageNumber: pageNumber);
+  FeaturedBooksCubit(this.fetchFeaturedBooksUseCase)
+      : super(FeaturedBooksInitial());
+  FetchFeaturedBooksUseCase fetchFeaturedBooksUseCase;
+
+  Future<void> fetchFeaturedBooks({int pageNumber = 0, context}) async {
+    if (pageNumber == 0) {
+      emit(FeaturedBooksLoading());
+    } else {
+      final currentState = state;
+      if (currentState is FeaturedBooksSuccess) {
+        emit(FeaturedBooksPaginationLoading(currentState.books));
+      }
+    }
+
+    var featuredBooks = await fetchFeaturedBooksUseCase.call(pageNumber);
 
     featuredBooks.fold(
       (failure) {
-        emit(FeaturedBooksFailure(failure.errorMessage));
+        if (pageNumber == 0) {
+          emit(FeaturedBooksFailure(failure.errorMessage));
+        } else {
+          emit(FeaturedBooksPaginationFailure(failure.errorMessage));
+        }
       },
-      (books) => emit(FeaturedBooksSuccess(books)),
+      (books) {
+        if (pageNumber == 0) {
+          emit(FeaturedBooksSuccess(books)); 
+        } else {
+          final currentState = state;
+          if (currentState is FeaturedBooksSuccess) {
+            emit(FeaturedBooksSuccess(
+                [...currentState.books, ...books])); 
+          } else if (currentState is FeaturedBooksPaginationLoading) {
+            emit(FeaturedBooksSuccess([
+              ...currentState.books,
+              ...books
+            ])); 
+          } else {
+            emit(FeaturedBooksSuccess(books)); 
+          }
+        }
+      },
     );
   }
 }

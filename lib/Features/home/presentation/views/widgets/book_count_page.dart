@@ -2,14 +2,13 @@ import 'package:booklyapp/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BookRating extends StatelessWidget {
+class BookCountPage extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
-  final int rating;
+
   final String countPage;
-  const BookRating(
+  const BookCountPage(
       {this.mainAxisAlignment = MainAxisAlignment.start,
       super.key,
-      required this.rating,
       required this.countPage});
 
   @override
@@ -17,10 +16,8 @@ class BookRating extends StatelessWidget {
     return Row(
       mainAxisAlignment: mainAxisAlignment,
       children: [
-       
-        SizedBox(width: 6.3.w),
         Text(
-          rating.toString(),
+          'Free',
           style: Styles.textStyle16,
         ),
         SizedBox(width: 5.w),
@@ -33,6 +30,5 @@ class BookRating extends StatelessWidget {
         ),
       ],
     );
-  
   }
 }

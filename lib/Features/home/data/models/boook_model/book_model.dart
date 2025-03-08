@@ -1,5 +1,3 @@
-
-
 import '../../../domain/entities/book_entity.dart';
 import 'access_info.dart';
 import 'sale_info.dart';
@@ -26,37 +24,42 @@ class BookModel extends BookEntity {
     this.accessInfo,
     this.searchInfo,
   }) : super(
-            bookId: id!,
-            image: volumeInfo?.imageLinks?.thumbnail ?? '',
-            authorName:  (volumeInfo?.authors?.isNotEmpty ?? false)
-            ? volumeInfo!.authors!.first
-            : 'No Name',
-            price: 0.0,
-            rating: volumeInfo!.averageRating,
-            title: volumeInfo.title??'',
-            category: volumeInfo.categories?.first ?? 'No Category',
-            pageCount: volumeInfo.pageCount!,
-            pdfUrl: accessInfo?.pdf?.acsTokenLink !
-            );
-
-  factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
-        kind: json['kind'] as String?,
-        id: json['id'] as String?,
-        etag: json['etag'] as String?,
-        selfLink: json['selfLink'] as String?,
-        volumeInfo: json['volumeInfo'] == null
-            ? null
-            : VolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>),
-        saleInfo: json['saleInfo'] == null
-            ? null
-            : SaleInfo.fromJson(json['saleInfo'] as Map<String, dynamic>),
-        accessInfo: json['accessInfo'] == null
-            ? null
-            : AccessInfo.fromJson(json['accessInfo'] as Map<String, dynamic>),
-        searchInfo: json['searchInfo'] == null
-            ? null
-            : SearchInfo.fromJson(json['searchInfo'] as Map<String, dynamic>),
-      );
+          bookId: id ?? 'Unknown ID',
+          image: volumeInfo?.imageLinks?.thumbnail ?? '',
+          authorName: (volumeInfo?.authors?.isNotEmpty ?? false)
+              ? volumeInfo!.authors!.first
+              : 'No Name',
+          price: 0.0,
+          rating: volumeInfo?.averageRating ?? 0.0,
+          title: volumeInfo?.title ?? 'No Title',
+          category: (volumeInfo?.categories?.isNotEmpty ?? false)
+              ? volumeInfo!.categories!.first
+              : 'No Category',
+          pageCount: volumeInfo?.pageCount ?? 0,
+          pdfUrl: volumeInfo?.previewLink ?? 'no',
+          country: accessInfo?.country ?? 'Unknown Country',
+          description: volumeInfo?.description ?? 'No Description',
+        );
+  factory BookModel.fromJson(Map<String, dynamic> json) {
+    return BookModel(
+      kind: json['kind'] as String?,
+      id: json['id'] as String?,
+      etag: json['etag'] as String?,
+      selfLink: json['selfLink'] as String?,
+      volumeInfo: json['volumeInfo'] == null
+          ? null
+          : VolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>),
+      saleInfo: json['saleInfo'] == null
+          ? null
+          : SaleInfo.fromJson(json['saleInfo'] as Map<String, dynamic>),
+      accessInfo: json['accessInfo'] == null
+          ? null
+          : AccessInfo.fromJson(json['accessInfo'] as Map<String, dynamic>),
+      searchInfo: json['searchInfo'] == null
+          ? null
+          : SearchInfo.fromJson(json['searchInfo'] as Map<String, dynamic>),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         'kind': kind,

@@ -1,5 +1,5 @@
 import 'package:booklyapp/Core/simple_bloc_observer.dart';
-import 'package:booklyapp/Core/utils/functions/setup_service_locator.dart';
+import 'package:booklyapp/Core/utils/service_locator.dart';
 import 'package:booklyapp/bookly_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,10 +11,10 @@ import 'Features/home/domain/entities/book_entity.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
-   await Hive.initFlutter();
+  await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
-  setupServiceLocator();
-   await Hive.openBox<BookEntity>(kFeaturedBox);
+   setupServiceLocator();
+  await Hive.openBox<BookEntity>(kFeaturedBox);
   await Hive.openBox<BookEntity>(kNewestBox);
   Bloc.observer = SimpleBlocObserver();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
