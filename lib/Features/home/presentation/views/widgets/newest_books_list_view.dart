@@ -40,13 +40,12 @@ class _NewestListViewState extends State<NewestListView> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.7,
-      // ToDo : i want to stop scroll for listView and scroll is from the widget scrollable above
       child: ListView.builder(
         controller: _scrollController,
         padding: EdgeInsets.only(top: 15.h),
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
-        itemCount: widget.books.length + 1, // +1 for pagination indicator
+        itemCount: widget.books.length + 1,
         itemBuilder: (context, index) {
           if (index < widget.books.length) {
             return BookListViewItem(

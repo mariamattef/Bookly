@@ -49,74 +49,10 @@ class NewestbooksCubit extends Cubit<NewestbooksState> {
     isFetching = false;
   }
 
-  void refreshBooks() => fetchNewestBooks(isRefresh: true);
+  // void refreshBooks() => fetchNewestBooks(isRefresh: true);
 }
 
 
 
 
 
-
-
-
-
-// import 'package:booklyapp/Features/home/domain/entities/book_entity.dart';
-// import 'package:booklyapp/Features/home/domain/use_cases/newest_books_use_case.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-
-// part 'newestbooks_state.dart';
-
-// class NewestbooksCubit extends Cubit<NewestbooksState> {
-//   NewestbooksCubit(this._newestBooksUseCase) : super(NewestbooksInitial());
-
-//   final NewestBooksUseCase _newestBooksUseCase;
-//   List<BookEntity> books = [];
-//   int currentPage = 1;
-
-//   Future<void> fetchNewestBooks({int pageNumber = 1}) async {
-//     if (pageNumber == 1) {
-//       emit(NewestbooksLoading());
-//     } else {
-//       emit(NewestbooksPaginationLoading());
-//     }
-
-//     var newestBooks = await _newestBooksUseCase.call(pageNumber);
-//     newestBooks.fold(
-//       (failure) {
-//         emit(NewestbooksFailure(failure.errorMessage));
-//       },
-//       (newBooks) {
-//         books.addAll(newBooks); // Append new books
-//         currentPage++; // Move to next page
-
-//         emit(NewestbooksSuccess(List.from(books))); // Emit updated list
-//       },
-//     );
-//   }
-// }
-
-
-
-
-
-// // import 'package:booklyapp/Features/home/domain/entities/book_entity.dart';
-// // import 'package:booklyapp/Features/home/domain/use_cases/newest_books_use_case.dart';
-// // import 'package:flutter_bloc/flutter_bloc.dart';
-// // part 'newestbooks_state.dart';
-
-// // class NewestbooksCubit extends Cubit<NewestbooksState> {
-// //   NewestbooksCubit(this._newestBooksUseCase) : super(NewestbooksInitial());
-// //   final NewestBooksUseCase _newestBooksUseCase;
-
-
-// //   Future<void> fetchNewestBooks({int pageNumber = 0}) async {
-// //     emit(NewestbooksLoading());
-
-// //     var newestBooks = await _newestBooksUseCase.call(pageNumber);
-// //     newestBooks.fold((failure) {
-// //       emit(NewestbooksFailure(failure.errorMessage));
-// //     }, (books) {
-// //       emit(NewestbooksSuccess(books));
-// //     });
-// //   }
-// // }

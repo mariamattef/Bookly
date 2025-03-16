@@ -10,38 +10,39 @@ import 'package:booklyapp/Features/web_view/book_web_view_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-abstract class AppRouter {
+class AppRouter {
   static const kHomeView = '/homeView';
   static const kBookDetailsView = '/BookDetailsViews';
   static const kSearchView = '/SearchView';
   static const kBookView = '/BookView';
   static const kLoading = '/CutomLoadingIndicator';
-  static final router = GoRouter(
-    routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const SplashView(),
-      ),
-      GoRoute(
-        path: kHomeView,
-        builder: (context, state) => const HomeView(),
-      ),
-      GoRoute(
+
+  static GoRouter createRouter(Function(bool) onThemeChanged) {
+    return GoRouter(
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const SplashView(),
+        ),
+        GoRoute(
+          path: kHomeView,
+          builder: (context, state) => HomeView(onThemeChanged: onThemeChanged),
+        ),
+        GoRoute(
           path: AppRouter.kBookDetailsView,
           builder: (context, state) {
             final BookEntity book = state.extra as BookEntity;
-            return BookDetailsView(
-              book: book,
-            );
-          }),
-      GoRoute(
-        path: kSearchView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => SearchCubit(getIt<HomeRepo>()),
-          child: const SearchView(),
+            return BookDetailsView(book: book);
+          },
         ),
-      ),
-      GoRoute(
+        GoRoute(
+          path: kSearchView,
+          builder: (context, state) => BlocProvider(
+            create: (context) => SearchCubit(getIt<HomeRepo>()),
+            child: const SearchView(),
+          ),
+        ),
+        GoRoute(
           path: kBookView,
           builder: (context, state) {
             final extra = state.extra as Map<String, dynamic>;
@@ -52,7 +53,9 @@ abstract class AppRouter {
               webUrl: bookUrl,
               title: title,
             );
-          }),
-    ],
-  );
+          },
+        ),
+      ],
+    );
+  }
 }
